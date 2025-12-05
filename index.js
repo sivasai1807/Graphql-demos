@@ -4,19 +4,22 @@ import { startStandaloneServer } from "@apollo/server/standalone";
 const typeDefs = `#graphql
   
   type Query {
-    greetings(name: String): String!
-    add(a:Int!, b:Int!): Int
+    greetings:[String]
+    luckynumbers:[Int]
+    temperatures:[Float]
+    flags:[Boolean]
+    ids:[ID]
 
   }
 `;
 
 const resolvers = {
   Query: {
-  greetings(parent,args,ctx,info){
-    console.log(args);
-    return 'Hello ${args.name}';
-  },
-  add:(_,{a,b}) => a+ b,
+    greetings:()=>["Hello","Hi","Hey"],
+    luckynumbers:()=>[1,2,7,5],
+    temperatures:()=>[12.3,14.5,12.3],
+    flags:()=>[true,false,true],
+    ids:["id_1","id_2","id_3"]
   },
 
 };
